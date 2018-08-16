@@ -11,7 +11,7 @@ public class TestFastdfs {
 	public static void main(String[] args) throws Exception {
 
 		// 第一步:加载配置文件,配置文件中指定Trackerserver的位置.
-		ClientGlobal .init("D:/DevSoft/luna-workspace/atguigu-fastdfs/src/main/resources/tracker.conf");
+		ClientGlobal.init("src/main/resources/tracker.conf");
 		// 第二步:创建一个TrackerClient对象.
 		TrackerClient trackerClient = new TrackerClient();
 		// 第三步:从TrackerClient中获得TrackerServer对象.
@@ -21,13 +21,16 @@ public class TestFastdfs {
 		// 第五步:创建StorageClient对象,需要两个参数TrackerServer对象,StorageServer
 		StorageClient storageClient = new StorageClient(trackerServer, storageServer);
 		// 第六步:调用storageClient对象upload方法上传图片,返回图片的url.
-		String[] strings = storageClient.upload_file("C:/Users/2x/Desktop/1.jpg", "jpg", null);
+		String[] strings = storageClient.upload_file("1.jpg", "jpg", null);
 		// 第七步: 获取上传的路径
-		String vurl = "";
+		String vurl = "192.168.136.132";
 		for (String string : strings) {
 			System.out.println(string);
 			vurl += "/"+string;
 		}
 		System.out.println(vurl);
+		// http://192.168.136.132/group1/M00/00/00/wKiIhFt1OECAZ8DKAADHFbW659c606.jpg
+		// http://192.168.136.132/group1/M00/00/00/wKiIhFt1MSyAQ91UAADHFbW659c882.jpg
+		// http://192.168.136.132/group1/M00/00/00/wKiIhFt1OK6AD6CoAADHFbW659c111.jpg
 	}
 }
